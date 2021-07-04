@@ -38,6 +38,17 @@ py_library(
 )
 
 py_library(
+    name = "emnist_cvae",
+    srcs = ["emnist_cvae.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":training_specs",
+        "//utils/datasets:emnist_dataset",
+        "//utils/models:emnist_cvae_models",
+    ],
+)
+
+py_library(
     name = "shakespeare",
     srcs = ["shakespeare.py"],
     srcs_version = "PY3",

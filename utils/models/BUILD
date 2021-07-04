@@ -24,12 +24,19 @@ py_library(
     srcs_version = "PY3",
 )
 
+
 py_test(
     name = "emnist_ae_models_test",
     srcs = ["emnist_ae_models_test.py"],
     python_version = "PY3",
     srcs_version = "PY3",
     deps = [":emnist_ae_models"],
+)
+
+py_library(
+    name = "emnist_cvae_models",
+    srcs = ["emnist_cvae_models.py"],
+    srcs_version = "PY3",
 )
 
 py_library(

@@ -6,6 +6,6 @@ numpy==1.19.2
 tensorboard==2.5.0
 tensorflow==2.5.0
 tensorflow-addons==0.13.0
-# 0.18.0 breaks on Windows due to jaxlib dependency
+# >0.18.0 breaks on Windows due to jaxlib dependency
 tensorflow-federated==0.19.0
 

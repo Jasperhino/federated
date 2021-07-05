@@ -38,7 +38,7 @@ def configure_training(task_spec: training_specs.TaskSpec) -> training_specs.Run
       federated task.
     """
 
-    emnist_task = 'autoencoder'
+    emnist_task = 'cvae'
     emnist_train, _ = tff.simulation.datasets.emnist.load_data(only_digits=False)
     _, emnist_test = emnist_dataset.get_centralized_datasets(only_digits=False, emnist_task=emnist_task)
 

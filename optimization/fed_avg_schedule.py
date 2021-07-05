@@ -85,8 +85,7 @@ def server_update(model, server_optimizer, server_state, weights_delta):
       An updated `ServerState`.
     """
     model_weights = _get_weights(model)
-    tf.nest.map_structure(lambda v, t: v.assign(t), model_weights,
-                          server_state.model)
+    tf.nest.map_structure(lambda v, t: v.assign(t), model_weights, server_state.model)
     # Server optimizer variables must be initialized prior to invoking this
     tf.nest.map_structure(lambda v, t: v.assign(t), server_optimizer.variables(),
                           server_state.optimizer_state)
@@ -284,8 +283,7 @@ def build_fed_avg_process(
         client_lr = client_lr_schedule(round_num)
         client_optimizer = client_optimizer_fn(client_lr)
         client_update = create_client_update_fn()
-        return client_update(model_fn(), tf_dataset, initial_model_weights,
-                             client_optimizer, client_weight_fn)
+        return client_update(model_fn(), tf_dataset, initial_model_weights, client_optimizer, client_weight_fn)
 
     @tff.tf_computation(server_state_type, model_weights_type.trainable)
     def server_update_fn(server_state, model_delta):

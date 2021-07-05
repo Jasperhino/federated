@@ -17,22 +17,22 @@ import functools
 from typing import Optional
 
 import tensorflow as tf
+from keras.utils.vis_utils import plot_model
 from tensorflow.keras import layers
 
 
 class CCVAE(tf.keras.Model):
     def __init__(self, latent_dim, data_dim, n_classes):
         super(CCVAE, self).__init__()
-        in_shape = (data_dim, data_dim, 1)
         self.num_classes = n_classes
         self.latent_dim = latent_dim
 
         label_input = layers.Input(shape=(1,))
         l = layers.Embedding(n_classes, 50)(label_input)
-        l = layers.Dense(in_shape[0] * in_shape[1])(l)
-        l = layers.Reshape((in_shape[0], in_shape[1], 1))(l)
+        l = layers.Dense(data_dim * data_dim)(l)
+        l = layers.Reshape((data_dim, data_dim, 1))(l)
 
-        image_input = layers.Input(in_shape, name="original_img")
+        image_input = layers.Input(shape=(data_dim, data_dim, 1), name="original_img")
         merge = layers.concatenate([image_input, l])
 
         x = layers.Conv2D(32, 3, activation="relu", strides=2, padding="same")(merge)
@@ -91,5 +91,6 @@ def create_cvae_model(latent_dim: Optional[int] = 2, data_dim: Optional[int] = 2
     Returns:
       A `tf.keras.Model`.
     """
+    model = CCVAE(latent_dim=latent_dim, data_dim=data_dim, n_classes=n_classes)
+    return model
 
-    return CCVAE(latent_dim=latent_dim, data_dim=data_dim, n_classes=n_classes)

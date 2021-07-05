@@ -55,6 +55,7 @@ py_library(
         "//optimization/tasks:cifar100",
         "//optimization/tasks:emnist",
         "//optimization/tasks:emnist_ae",
+        "//optimization/tasks:emnist_cvae",
         "//optimization/tasks:shakespeare",
         "//optimization/tasks:stackoverflow_nwp",
         "//optimization/tasks:stackoverflow_tp",

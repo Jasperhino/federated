@@ -23,8 +23,7 @@ from utils.datasets import emnist_dataset
 from utils.models import emnist_ae_models
 
 
-def configure_training(
-    task_spec: training_specs.TaskSpec) -> training_specs.RunnerSpec:
+def configure_training(task_spec: training_specs.TaskSpec) -> training_specs.RunnerSpec:
   """Configures training for the EMNIST autoencoder task.
 
   This method will load and pre-process datasets and construct a model used for
